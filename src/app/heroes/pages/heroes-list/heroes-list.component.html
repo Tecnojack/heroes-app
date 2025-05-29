@@ -1,0 +1,38 @@
+<mat-toolbar color="accent">Catálogo de Superhéroes</mat-toolbar>
+<div class="catalog-container">
+
+
+  <ng-container *ngIf="!loading">
+    <div *ngIf="heroes !== null && heroes.length > 0; else noResults">
+       <div class="hero-grid" *ngIf="!loading">
+    <div
+      *ngFor="let hero of heroes"
+      class="hero-tile"
+      [ngClass]="getGeneroClass(hero.appearance.gender)"
+      (click)="openDetail(hero.id)"
+    >
+      <div class="genero-icon">{{ getGeneroIcon(hero.appearance.gender) }}</div>
+      <img [src]="hero.images.md" [alt]="hero.name" />
+      <div class="hero-name">{{ hero.name }}</div>
+      <div class="hero-publisher">{{hero.biography.publisher}}</div>
+    </div>
+  </div>
+    </div>
+    <ng-template #noResults>
+      <div class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No se encontraron superhéroes</p>
+      </div>
+    </ng-template>
+  </ng-container>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <mat-paginator
+    *ngIf="!loading"
+    [length]="total"
+    [pageSize]="size"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [pageIndex]="page"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

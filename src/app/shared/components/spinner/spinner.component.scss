@@ -1,0 +1,21 @@
+.overlay-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px); /* <- efecto de desenfoque */
+  // background-color: rgba(0, 0, 0, 0.2); /* leve oscurecimiento */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #fff; /* color del spinner */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
